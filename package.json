@@ -9,7 +9,8 @@
   "author": "WS",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "gitignore": "^0.6.0"
   },
   "repository": {
     "type": "git",
