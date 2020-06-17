@@ -1,25 +1,54 @@
 
 //LOADS DATA
-const notesData = require("../db/db.json");
+let notesData = require("../db/db.json");
+const path = require("path");
+const OUTPUT_DIR = require("../db/save.js");
+const outputPath = path.join(OUTPUT_DIR(),"db.json");
 //....file system
 const fs = require("fs");
 
 //Routing
-console.log("Api route confirmed");
+
 module.exports = function(app) {
+
+
     app.get("/api/notes", function (req,res) {
         
+        let ln = notesData.length;
+        for (let i = 0; i < ln;i++){
+            notesData[i].id = i+1;
+        }
         res.json(notesData);
     });
 
+
     app.post("/api/notes", function(req,res) {
+
         notesData.push(req.body);
-        fs.writeFileSync("./db/db.json", JSON.stringify(notesData));
         res.json(notesData);
-        console.log("post");
-    })
+        fs.writeFile(outputPath, JSON.stringify(notesData), function (err){
+            if(err) throw err;
+        });
+        // console.log("post");
+    });
+
 
     app.delete("/api/notes/:id", function(req,res) {
-        console.log("delete");
+        const uniqueID = req.params.id;
+
+        res.json(false);
+
+        let removeNotes = [];
+        for(let i = 0; i < notesData.length; i++){
+            if(notesData[i].id != uniqueID) {
+                removeNotes.push(notesData[i]);
+            }
+           
+        }
+            
+        fs.writeFile(outputPath, JSON.stringify(removeNotes), function (err){
+            if(err) throw err;
+        });
+        // console.log("delete");
     })
 };

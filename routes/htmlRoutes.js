@@ -12,5 +12,4 @@ module.exports = function(app){
         res.sendFile(path.join(__dirname, "../public/notes.html"));
     });
 
-    console.log("html Routes Confirmed")
 };
