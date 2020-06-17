@@ -13,11 +13,13 @@ module.exports = function(app) {
     });
 
     app.post("/api/notes", function(req,res) {
-       console.log("posting");
-
+        notesData.push(req.body);
+        fs.writeFileSync("./db/db.json", JSON.stringify(notesData));
+        res.json(notesData);
+        console.log("post");
     })
 
     app.delete("/api/notes/:id", function(req,res) {
-        console.log("deleting");
+        console.log("delete");
     })
 };
