@@ -27,8 +27,8 @@ URL : https://github.com/sornwill/note-taker/
       https://frozen-ridge-30974.herokuapp.com/
 
 ## Screenshots
-![screenshots](./assets/img/screen1.jpg)
-![screenshots2](./assets/img/screen2.jpg)
+![screenshots](/assets/img/screen1.jpg)
+![screenshots2](/assets/img/screen2.jpg)
     
 ## Installation
 npm i, express. 
